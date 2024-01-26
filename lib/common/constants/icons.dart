@@ -1,0 +1,37 @@
+class AssetIcons {
+  static const String arrowDown = "assets/icons/arrow_down.png";
+  static const String bag = "assets/icons/bag.png";
+  static const String filter = "assets/icons/filter.png";
+  static const String heart = "assets/icons/Heart.png";
+  static const String home = "assets/icons/Home.png";
+  static const String notification = "assets/icons/Notification.png";
+  static const String search = "assets/icons/search.png";
+  // static const String = "assets/icons/.png";
+  // static const String = "assets/icons/.png";
+  // static const String = "assets/icons/.png";
+  // static const String = "assets/icons/.png";
+  // static const String = "assets/icons/.png";
+  // static const String = "assets/icons/.png";
+  // static const String = "assets/icons/.png";
+  // static const String = "assets/icons/.png";
+  // static const String = "assets/icons/.png";
+  // static const String = "assets/icons/.png";
+  // static const String = "assets/icons/.png";
+  // static const String = "assets/icons/.png";
+  // static const String = "assets/icons/.png";
+  // static const String = "assets/icons/.png";
+  // static const String = "assets/icons/.png";
+  // static const String = "assets/icons/.png";
+  // static const String = "assets/icons/.png";
+  // static const String = "assets/icons/.png";
+  // static const String = "assets/icons/.png";
+  // static const String = "assets/icons/.png";
+  // static const String = "assets/icons/.png";
+  // static const String = "assets/icons/.png";
+  // static const String = "assets/icons/.png";
+  // static const String = "assets/icons/.png";
+  // static const String = "assets/icons/.png";
+  // static const String = "assets/icons/.png";
+  // static const String = "assets/icons/.png";
+  // static const String = "assets/icons/.png";
+}
