@@ -1,3 +1,5 @@
+import 'package:coffee_shop/common/constants/colors.dart';
+import 'package:coffee_shop/features/coffee_home/screen/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/route_manager.dart';
 
@@ -15,9 +17,11 @@ class MyApp extends StatelessWidget {
       title: 'Coffee Shop',
       theme: ThemeData(
         fontFamily: "Sora",
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme:
+            ColorScheme.fromSeed(seedColor: AppColors.homeContainerGradient1),
         useMaterial3: true,
       ),
+      home: const HomeScreen(),
     );
   }
 }
