@@ -1,3 +1,4 @@
+import 'package:coffee_shop/data/models/coffee.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
@@ -6,5 +7,16 @@ class HomeController extends GetxController {
 
   selectListType(int index) {
     selectedListType.value = index;
+  }
+
+  String flavor(CoffeeFlavor coffeeFlavor) {
+    switch (coffeeFlavor) {
+      case CoffeeFlavor.Chocolate:
+        return 'Chocolate';
+      case CoffeeFlavor.OatMilk:
+        return 'Oat Milk';
+      default:
+        return 'Unknown Flavor';
+    }
   }
 }

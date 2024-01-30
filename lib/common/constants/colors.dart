@@ -6,6 +6,8 @@ class AppColors {
   static const Color blackColor = Color.fromRGBO(47, 45, 44, 1);
   static const Color whiteColor = Color.fromRGBO(255, 255, 255, 1);
   static const Color greyColor = Color.fromRGBO(152, 152, 152, 1);
+  static const Color coffeeFlavorColor = Color.fromRGBO(155, 155, 155, 1);
+  static const Color coffeePriceColor = Color.fromRGBO(47, 75, 78, 1);
   static const Color buttonColor = Color.fromRGBO(198, 124, 78, 1);
   static const Color searchHintColor = Color.fromRGBO(152, 152, 152, 1);
 
