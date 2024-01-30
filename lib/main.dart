@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Coffee Shop',
       theme: ThemeData(
+        scaffoldBackgroundColor: AppColors.scaffoldColor,
         fontFamily: "Sora",
         colorScheme:
             ColorScheme.fromSeed(seedColor: AppColors.homeContainerGradient1),

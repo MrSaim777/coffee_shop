@@ -36,64 +36,71 @@ class HomeScreen extends StatelessWidget {
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           crossAxisSpacing: context.width / 20,
-          mainAxisExtent: context.height / 3),
+          mainAxisExtent: context.height / 3.3,
+          mainAxisSpacing: context.width / 50),
       itemBuilder: (context, index) {
         var list = listOfCoffees[index];
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Image.asset(list.image),
-            Padding(
-              padding: EdgeInsets.symmetric(
-                  horizontal: context.width / 50,
-                  vertical: context.height / 100),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    list.name,
-                    style: appTextStyle(
-                        fontSize: 0.032,
-                        fontWeight: FontWeight.bold,
-                        textColor: AppColors.blackColor),
-                  ),
-                  Text(
-                    'with ${controller.flavor(list.flavor)}',
-                    style: appTextStyle(
-                        fontSize: 0.026,
-                        textColor: AppColors.coffeeFlavorColor),
-                  ),
-                  SizedBox(height: context.height / 100),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Text(
-                        '\$ ${list.price}',
-                        style: appTextStyle(
-                            fontSize: 0.032,
-                            fontWeight: FontWeight.bold,
-                            textColor: AppColors.coffeePriceColor),
-                      ),
-                      InkWell(
-                        child: Container(
-                          height: context.height / 25,
-                          width: context.width / 10,
-                          decoration: BoxDecoration(
-                              color: AppColors.buttonColor,
-                              borderRadius: BorderRadius.circular(10)),
-                          child: Center(
-                              child: Icon(Icons.add,
-                                  color: AppColors.whiteColor,
-                                  size: context.width / 20)),
+        return Container(
+          padding: EdgeInsets.all(context.width / 100),
+          decoration: BoxDecoration(
+              color: AppColors.whiteColor,
+              borderRadius: BorderRadius.circular(15)),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Image.asset(list.image),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                    horizontal: context.width / 50,
+                    vertical: context.height / 100),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      list.name,
+                      style: appTextStyle(
+                          fontSize: 0.032,
+                          fontWeight: FontWeight.bold,
+                          textColor: AppColors.blackColor),
+                    ),
+                    Text(
+                      'with ${controller.flavor(list.flavor)}',
+                      style: appTextStyle(
+                          fontSize: 0.026,
+                          textColor: AppColors.coffeeFlavorColor),
+                    ),
+                    SizedBox(height: context.height / 100),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text(
+                          '\$ ${list.price}',
+                          style: appTextStyle(
+                              fontSize: 0.032,
+                              fontWeight: FontWeight.bold,
+                              textColor: AppColors.coffeePriceColor),
                         ),
-                      )
-                    ],
-                  )
-                ],
+                        InkWell(
+                          child: Container(
+                            height: context.height / 25,
+                            width: context.width / 10,
+                            decoration: BoxDecoration(
+                                color: AppColors.buttonColor,
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Center(
+                                child: Icon(Icons.add,
+                                    color: AppColors.whiteColor,
+                                    size: context.width / 20)),
+                          ),
+                        )
+                      ],
+                    )
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         );
       },
     );
@@ -249,11 +256,11 @@ class HomeScreen extends StatelessWidget {
           bottom: -context.height / 12,
           child: Container(
             height: context.height / 6,
-            width: context.width,
+            width: context.width / 1.14,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 image: const DecorationImage(
-                    image: AssetImage(AssetImages.buyOne))),
+                    fit: BoxFit.cover, image: AssetImage(AssetImages.buyOne))),
           ),
         ),
       ],
