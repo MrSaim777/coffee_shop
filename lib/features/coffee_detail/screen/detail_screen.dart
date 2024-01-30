@@ -28,6 +28,7 @@ class CoffeeDetailScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               buildImage(context),
+              SizedBox(height: context.height / 80),
               buildTitle(context, homeController),
               const Divider(color: AppColors.dividerColor),
               SizedBox(height: context.height / 80),
@@ -35,47 +36,8 @@ class CoffeeDetailScreen extends StatelessWidget {
               SizedBox(height: context.height / 80),
               buildSize(context, detailController),
               SizedBox(height: context.height / 25),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Price",
-                        style: appTextStyle(
-                            textColor: AppColors.coffeeFlavorColor,
-                            fontSize: 0.03),
-                      ),
-                      Text(
-                        '\$ ${coffee.price}',
-                        style: appTextStyle(
-                            fontSize: 0.04,
-                            fontWeight: FontWeight.bold,
-                            textColor: AppColors.buttonColor),
-                      )
-                    ],
-                  ),
-                  InkWell(
-                    child: Container(
-                      height: context.height / 14,
-                      width: context.width / 1.6,
-                      decoration: BoxDecoration(
-                          color: AppColors.buttonColor,
-                          borderRadius: BorderRadius.circular(20)),
-                      child: Center(
-                        child: Text(
-                          "Buy Now",
-                          style: appTextStyle(
-                              textColor: AppColors.whiteColor,
-                              fontSize: 0.03,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    ),
-                  )
-                ],
-              )
+              buildPrice(context),
+              SizedBox(height: context.height / 25),
             ],
           ),
         ),
@@ -83,84 +45,136 @@ class CoffeeDetailScreen extends StatelessWidget {
     );
   }
 
-  Column buildSize(BuildContext context, DetailController detailController) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          "Size",
-          style: appTextStyle(
-              fontSize: 0.032,
-              fontWeight: FontWeight.bold,
-              textColor: AppColors.blackColor),
-        ),
-        SizedBox(height: context.height / 100),
-        Obx(
-          () => Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  Padding buildPrice(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: context.width / 50),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizeContainer(
-                  onTap: () => detailController.selectSize(CoffeeSize.Small),
-                  title: "S",
-                  isSelected:
-                      detailController.selectedSize.value == CoffeeSize.Small
-                          ? true
-                          : false),
-              SizeContainer(
-                  onTap: () => detailController.selectSize(CoffeeSize.Medium),
-                  title: "M",
-                  isSelected:
-                      detailController.selectedSize.value == CoffeeSize.Medium
-                          ? true
-                          : false),
-              SizeContainer(
-                  onTap: () => detailController.selectSize(CoffeeSize.Large),
-                  title: "L",
-                  isSelected:
-                      detailController.selectedSize.value == CoffeeSize.Large
-                          ? true
-                          : false),
+              Text(
+                "Price",
+                style: appTextStyle(
+                    textColor: AppColors.coffeeFlavorColor, fontSize: 0.03),
+              ),
+              Text(
+                '\$ ${coffee.price}',
+                style: appTextStyle(
+                    fontSize: 0.036,
+                    fontWeight: FontWeight.bold,
+                    textColor: AppColors.buttonColor),
+              )
             ],
           ),
-        )
-      ],
+          InkWell(
+            child: Container(
+              height: context.height / 14,
+              width: context.width / 1.6,
+              decoration: BoxDecoration(
+                  color: AppColors.buttonColor,
+                  borderRadius: BorderRadius.circular(20)),
+              child: Center(
+                child: Text(
+                  "Buy Now",
+                  style: appTextStyle(
+                      textColor: AppColors.whiteColor,
+                      fontSize: 0.03,
+                      fontWeight: FontWeight.bold),
+                ),
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 
-  Column buildDescription(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          "Description",
-          style: appTextStyle(
-              fontSize: 0.032,
-              fontWeight: FontWeight.bold,
-              textColor: AppColors.blackColor),
-        ),
-        SizedBox(height: context.height / 100),
-        ReadMoreText(
-          coffee.description,
-          trimLines: 3,
-          colorClickableText: AppColors.buttonColor,
-          trimMode: TrimMode.Line,
-          trimCollapsedText: 'Read more',
-          trimExpandedText: 'Read less',
-          textAlign: TextAlign.justify,
-          style: appTextStyle(
-            textColor: AppColors.coffeeFlavorColor,
-            fontSize: 0.028,
+  Padding buildSize(BuildContext context, DetailController detailController) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: context.width / 50),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Size",
+            style: appTextStyle(
+                fontSize: 0.032,
+                fontWeight: FontWeight.bold,
+                textColor: AppColors.blackColor),
           ),
-          lessStyle: appTextStyle(
-              textColor: AppColors.buttonColor,
-              fontSize: 0.028,
-              fontWeight: FontWeight.bold),
-          moreStyle: appTextStyle(
-              textColor: AppColors.buttonColor,
-              fontSize: 0.028,
-              fontWeight: FontWeight.bold),
-        ),
-      ],
+          SizedBox(height: context.height / 100),
+          Obx(
+            () => Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SizeContainer(
+                    onTap: () => detailController.selectSize(CoffeeSize.Small),
+                    title: "S",
+                    isSelected:
+                        detailController.selectedSize.value == CoffeeSize.Small
+                            ? true
+                            : false),
+                SizeContainer(
+                    onTap: () => detailController.selectSize(CoffeeSize.Medium),
+                    title: "M",
+                    isSelected:
+                        detailController.selectedSize.value == CoffeeSize.Medium
+                            ? true
+                            : false),
+                SizeContainer(
+                    onTap: () => detailController.selectSize(CoffeeSize.Large),
+                    title: "L",
+                    isSelected:
+                        detailController.selectedSize.value == CoffeeSize.Large
+                            ? true
+                            : false),
+              ],
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
+  Padding buildDescription(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: context.width / 50),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            "Description",
+            style: appTextStyle(
+                fontSize: 0.032,
+                fontWeight: FontWeight.bold,
+                textColor: AppColors.blackColor),
+          ),
+          SizedBox(height: context.height / 100),
+          ReadMoreText(
+            coffee.description,
+            trimLines: 3,
+            colorClickableText: AppColors.buttonColor,
+            trimMode: TrimMode.Line,
+            trimCollapsedText: 'Read more',
+            trimExpandedText: 'Read less',
+            textAlign: TextAlign.justify,
+            style: appTextStyle(
+              textColor: AppColors.coffeeFlavorColor,
+              fontSize: 0.026,
+            ),
+            lessStyle: appTextStyle(
+                textColor: AppColors.buttonColor,
+                fontSize: 0.026,
+                fontWeight: FontWeight.bold),
+            moreStyle: appTextStyle(
+                textColor: AppColors.buttonColor,
+                fontSize: 0.026,
+                fontWeight: FontWeight.bold),
+          ),
+        ],
+      ),
     );
   }
 
@@ -171,21 +185,18 @@ class CoffeeDetailScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: context.height / 50),
             Text(
               coffee.name,
               style: appTextStyle(
-                  fontSize: 0.04,
+                  fontSize: 0.036,
                   fontWeight: FontWeight.bold,
                   textColor: AppColors.blackColor),
             ),
-            SizedBox(height: context.height / 100),
             Text(
               'with ${homeController.flavor(coffee.flavor)}',
               style: appTextStyle(
-                  textColor: AppColors.coffeeFlavorColor, fontSize: 0.03),
+                  textColor: AppColors.coffeeFlavorColor, fontSize: 0.026),
             ),
-            SizedBox(height: context.height / 100),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -196,7 +207,7 @@ class CoffeeDetailScreen extends StatelessWidget {
                     Text(
                       coffee.rating.toString(),
                       style: appTextStyle(
-                          fontSize: 0.032,
+                          fontSize: 0.03,
                           fontWeight: FontWeight.bold,
                           textColor: AppColors.blackColor),
                     ),
@@ -237,15 +248,12 @@ class CoffeeDetailScreen extends StatelessWidget {
     );
   }
 
-  Hero buildImage(BuildContext context) {
-    return Hero(
-      tag: 'image',
-      child: Image.asset(
-        coffee.image,
-        height: context.height / 3,
-        width: double.infinity,
-        fit: BoxFit.fill,
-      ),
+  Image buildImage(BuildContext context) {
+    return Image.asset(
+      coffee.image,
+      height: context.height / 3,
+      width: double.infinity,
+      fit: BoxFit.fill,
     );
   }
 
@@ -303,7 +311,7 @@ class SizeContainer extends StatelessWidget {
         child: Center(
             child: Text(title,
                 style: appTextStyle(
-                    fontSize: 0.03,
+                    fontSize: 0.026,
                     textColor: isSelected
                         ? AppColors.buttonColor
                         : AppColors.blackColor))),

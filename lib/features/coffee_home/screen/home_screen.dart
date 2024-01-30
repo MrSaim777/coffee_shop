@@ -58,12 +58,9 @@ class HomeScreen extends StatelessWidget {
                     SizedBox(
                         height: context.height / 6,
                         width: double.infinity,
-                        child: Hero(
-                          tag: 'image',
-                          child: Image.asset(
-                            list.image,
-                            fit: BoxFit.fill,
-                          ),
+                        child: Image.asset(
+                          list.image,
+                          fit: BoxFit.fill,
                         )),
                     Positioned(
                       left: context.width / 50,
