@@ -47,7 +47,7 @@ List<Coffee> listOfCoffees = [
       type: CoffeeType.Cappuccino,
       flavor: CoffeeFlavor.Chocolate,
       size: CoffeeSize.Medium,
-      price: 4.53,
+      price: 3.87,
       rating: 4.0,
       allRatings: 123),
 ];

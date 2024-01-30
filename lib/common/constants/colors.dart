@@ -13,4 +13,10 @@ class AppColors {
   static const Color buttonColor = Color.fromRGBO(198, 124, 78, 1);
   static const Color searchHintColor = Color.fromRGBO(152, 152, 152, 1);
   static const Color bottomBarColor = Color.fromRGBO(228, 228, 228, 0.25);
+  static const Color allRatingColor = Color.fromRGBO(128, 128, 128, 1);
+  static const Color dividerColor = Color.fromRGBO(234, 234, 234, 1);
+  static const Color priceContainerBorderColor =
+      Color.fromRGBO(222, 222, 222, 1);
+  static const Color priceContainerSelectedColor =
+      Color.fromRGBO(255, 245, 238, 1);
 }

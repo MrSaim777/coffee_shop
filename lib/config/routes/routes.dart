@@ -1,6 +1,6 @@
 class AppRoutes {
   static const String defaultRoute = '/';
-  static const String homeScreen = 'home';
-  static const String detailScreen = 'detail';
-  static const String orderScreen = 'order';
+  static const String home = 'home';
+  static const String detail = 'detail';
+  static const String order = 'order';
 }

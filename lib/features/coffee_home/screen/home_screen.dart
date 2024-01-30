@@ -2,6 +2,7 @@ import 'package:coffee_shop/common/constants/colors.dart';
 import 'package:coffee_shop/common/constants/icons.dart';
 import 'package:coffee_shop/common/constants/images.dart';
 import 'package:coffee_shop/common/utils/app_text_style.dart';
+import 'package:coffee_shop/config/routes/routes.dart';
 import 'package:coffee_shop/data/coffees_list.dart';
 import 'package:coffee_shop/features/coffee_home/controller/home_controller.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,8 @@ class HomeScreen extends StatelessWidget {
             buildHomeStack(context),
             SizedBox(height: context.height / 12),
             buildCoffeeTypeList(context, controller),
-            buildGridView(context, controller)
+            buildGridView(context, controller),
+            SizedBox(height: context.height / 50),
           ],
         ),
       ),
@@ -36,70 +38,104 @@ class HomeScreen extends StatelessWidget {
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
           crossAxisSpacing: context.width / 20,
-          mainAxisExtent: context.height / 3.3,
+          mainAxisExtent: context.height / 3.2,
           mainAxisSpacing: context.width / 50),
       itemBuilder: (context, index) {
         var list = listOfCoffees[index];
-        return Container(
-          padding: EdgeInsets.all(context.width / 100),
-          decoration: BoxDecoration(
-              color: AppColors.whiteColor,
-              borderRadius: BorderRadius.circular(15)),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Image.asset(list.image),
-              Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: context.width / 50,
-                    vertical: context.height / 100),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+        return InkWell(
+          onTap: () =>
+              Navigator.pushNamed(context, AppRoutes.detail, arguments: list),
+          child: Container(
+            padding: EdgeInsets.all(context.width / 100),
+            decoration: BoxDecoration(
+                color: AppColors.whiteColor,
+                borderRadius: BorderRadius.circular(15)),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Stack(
                   children: [
-                    Text(
-                      list.name,
-                      style: appTextStyle(
-                          fontSize: 0.032,
-                          fontWeight: FontWeight.bold,
-                          textColor: AppColors.blackColor),
-                    ),
-                    Text(
-                      'with ${controller.flavor(list.flavor)}',
-                      style: appTextStyle(
-                          fontSize: 0.026,
-                          textColor: AppColors.coffeeFlavorColor),
-                    ),
-                    SizedBox(height: context.height / 100),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Text(
-                          '\$ ${list.price}',
-                          style: appTextStyle(
-                              fontSize: 0.032,
-                              fontWeight: FontWeight.bold,
-                              textColor: AppColors.coffeePriceColor),
-                        ),
-                        InkWell(
-                          child: Container(
-                            height: context.height / 25,
-                            width: context.width / 10,
-                            decoration: BoxDecoration(
-                                color: AppColors.buttonColor,
-                                borderRadius: BorderRadius.circular(10)),
-                            child: Center(
-                                child: Icon(Icons.add,
-                                    color: AppColors.whiteColor,
-                                    size: context.width / 20)),
+                    SizedBox(
+                        height: context.height / 6,
+                        width: double.infinity,
+                        child: Hero(
+                          tag: 'image',
+                          child: Image.asset(
+                            list.image,
+                            fit: BoxFit.fill,
                           ),
-                        )
-                      ],
-                    )
+                        )),
+                    Positioned(
+                      left: context.width / 50,
+                      top: context.height / 200,
+                      child: Row(
+                        children: [
+                          Image.asset(AssetIcons.star,
+                              width: context.width / 35),
+                          SizedBox(width: context.width / 100),
+                          Text(
+                            list.rating.toString(),
+                            style: appTextStyle(
+                                fontSize: 0.02,
+                                fontWeight: FontWeight.bold,
+                                textColor: AppColors.whiteColor),
+                          ),
+                        ],
+                      ),
+                    ),
                   ],
                 ),
-              ),
-            ],
+                Padding(
+                  padding: EdgeInsets.symmetric(
+                      horizontal: context.width / 50,
+                      vertical: context.height / 100),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        list.name,
+                        style: appTextStyle(
+                            fontSize: 0.028,
+                            fontWeight: FontWeight.bold,
+                            textColor: AppColors.blackColor),
+                      ),
+                      Text(
+                        'with ${controller.flavor(list.flavor)}',
+                        style: appTextStyle(
+                            textColor: AppColors.coffeeFlavorColor),
+                      ),
+                      SizedBox(height: context.height / 100),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text(
+                            '\$ ${list.price}',
+                            style: appTextStyle(
+                                fontSize: 0.03,
+                                fontWeight: FontWeight.bold,
+                                textColor: AppColors.coffeePriceColor),
+                          ),
+                          InkWell(
+                            child: Container(
+                              height: context.height / 25,
+                              width: context.width / 10,
+                              decoration: BoxDecoration(
+                                  color: AppColors.buttonColor,
+                                  borderRadius: BorderRadius.circular(10)),
+                              child: Center(
+                                  child: Icon(Icons.add,
+                                      color: AppColors.whiteColor,
+                                      size: context.width / 20)),
+                            ),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         );
       },
@@ -136,7 +172,7 @@ class HomeScreen extends StatelessWidget {
                     child: Text(
                       list,
                       style: appTextStyle(
-                          fontSize: 0.028,
+                          fontSize: 0.026,
                           textColor: controller.selectedListType.value != index
                               ? AppColors.blackColor
                               : AppColors.whiteColor,
