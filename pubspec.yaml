@@ -14,6 +14,7 @@ dependencies:
   get: ^4.6.5
   flutter_svg: ^2.0.9
   readmore: ^2.2.0
+  google_maps_flutter: ^2.5.3
 
 dev_dependencies:
   flutter_test:
