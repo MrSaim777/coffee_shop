@@ -1,7 +1,7 @@
   import 'package:coffee_shop/common/constants/colors.dart';
 import 'package:coffee_shop/common/constants/icons.dart';
 import 'package:coffee_shop/common/utils/app_text_style.dart';
-import 'package:coffee_shop/config/routes/routes.dart';
+import 'package:coffee_shop/common/routes/routes.dart';
 import 'package:coffee_shop/data/coffees_list.dart';
 import 'package:coffee_shop/features/coffee_home/controller/home_controller.dart';
 import 'package:flutter/material.dart';

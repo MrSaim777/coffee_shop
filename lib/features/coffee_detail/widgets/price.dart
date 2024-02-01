@@ -1,6 +1,6 @@
   import 'package:coffee_shop/common/constants/colors.dart';
 import 'package:coffee_shop/common/utils/app_text_style.dart';
-import 'package:coffee_shop/config/routes/routes.dart';
+import 'package:coffee_shop/common/routes/routes.dart';
 import 'package:coffee_shop/data/models/coffee.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

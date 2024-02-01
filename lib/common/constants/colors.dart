@@ -15,6 +15,8 @@ class AppColors {
   static const Color bottomBarColor = Color.fromRGBO(228, 228, 228, 0.25);
   static const Color allRatingColor = Color.fromRGBO(128, 128, 128, 1);
   static const Color dividerColor = Color.fromRGBO(234, 234, 234, 1);
+  static const Color progressColor = Color.fromRGBO(54, 192, 126, 1);
+
   static const Color bigDividerColor = Color.fromRGBO(244, 244, 244, 1);
   static const Color deliveryOrPickupBGColor = Color.fromRGBO(242, 242, 242, 1);
   static const Color editAddressColor = Color.fromRGBO(48, 51, 54, 1);
