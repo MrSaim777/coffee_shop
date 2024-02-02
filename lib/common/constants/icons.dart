@@ -22,8 +22,8 @@ class AssetIcons {
   static const String phone = "assets/icons/phone.png";
   static const String riderLeft = "assets/icons/rider_left.png";
   static const String riderRight = "assets/icons/rider_right.png";
-  // static const String = "assets/icons/.png";
-  // static const String = "assets/icons/.png";
+  static const String pin= "assets/icons/pin.png";
+  static const String source= "assets/icons/source.png";
   // static const String = "assets/icons/.png";
   // static const String = "assets/icons/.png";
   // static const String = "assets/icons/.png";
