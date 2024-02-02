@@ -42,3 +42,7 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+#keys
+**/android/secrets.properties
+**/lib/features/coffee_delivery/controller/map_key.dart
