@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:developer';
-import 'package:coffee_shop/common/constants/colors.dart';
 import 'package:coffee_shop/common/constants/icons.dart';
 import 'package:coffee_shop/features/coffee_delivery/controller/map_key.dart';
 import 'package:flutter/material.dart';
@@ -21,12 +20,26 @@ class DeliveryController extends GetxController {
   BitmapDescriptor markerDestinationIcon = BitmapDescriptor.defaultMarker;
   var marker = const Marker(markerId: MarkerId('1'));
   Map<PolylineId, Polyline> polylines = {};
+  List<LatLng> polylineCoordinates = [];
 
-  var sourceLanLng = const LatLng(32.942850664716296, 73.70796740055084);
+  var sourceLatLng = const LatLng(32.942850664716296, 73.70796740055084);
+  var destinationLatLng = const LatLng(32.952850664716296, 73.71796740055084);
+
+  // @override
+  // void onInit() async {
+  //   super.onInit();
+  // addSourceDestinationIcon();
+  // getCurrentLocation().then(
+  //   (_) => {
+  //     getPolylinePoints().then((coordinates) => {
+  //           generatePolyLineFromPoints(coordinates),
+  //         }),
+  //   },
+  // );
+  // }
 
   addSourceDestinationIcon() {
-    BitmapDescriptor.fromAssetImage(
-            const ImageConfiguration(), AssetIcons.source)
+    BitmapDescriptor.fromAssetImage(ImageConfiguration.empty, AssetIcons.source)
         .then((icon) => markerSourceIcon = icon);
 
     BitmapDescriptor.fromAssetImage(const ImageConfiguration(), AssetIcons.pin)
@@ -42,7 +55,6 @@ class DeliveryController extends GetxController {
 
   onMapCreated(GoogleMapController controller) {
     mapController.complete(controller);
-    addSourceDestinationIcon();
   }
 
   Future<Position> getCurrentLocation() async {
@@ -88,35 +100,52 @@ class DeliveryController extends GetxController {
     });
   }
 
-  Future<List<LatLng>> getPolylinePoints() async {
-    List<LatLng> polylineCoordinates = [];
+  void getPolylinePoints() async {
     PolylinePoints polylinePoints = PolylinePoints();
     PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
-      mapKey,
-      PointLatLng(_pGooglePlex.latitude, _pGooglePlex.longitude),
-      PointLatLng(_pApplePark.latitude, _pApplePark.longitude),
-      travelMode: TravelMode.driving,
-    );
+        mapKey,
+        PointLatLng(sourceLatLng.latitude, sourceLatLng.longitude),
+        PointLatLng(latitude, longitude.value));
+
     if (result.points.isNotEmpty) {
       for (var point in result.points) {
         polylineCoordinates.add(LatLng(point.latitude, point.longitude));
       }
-      // result.points.forEach((PointLatLng point) {
-      // });
-    } else {
-      log(result.errorMessage.toString());
     }
-    return polylineCoordinates;
+    longitude.refresh();
+    update();
   }
 
-  void generatePolyLineFromPoints(List<LatLng> polylineCoordinates) async {
-    PolylineId id = const PolylineId("poly");
-    Polyline polyline = Polyline(
-        polylineId: id,
-        color: AppColors.buttonColor,
-        points: polylineCoordinates,
-        width: 8);
+  // Future<List<LatLng>> getPolylinePoints() async {
+  //   List<LatLng> polylineCoordinates = [];
+  //   PolylinePoints polylinePoints = PolylinePoints();
+  //   PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
+  //     mapKey, //Use your own api key
+      // PointLatLng(sourceLatLng.latitude, sourceLatLng.longitude),
+      // PointLatLng(latitude, longitude.value),
+  //   );
+  //   if (result.points.isNotEmpty) {
+  // for (var point in result.points) {
+  //   polylineCoordinates.add(LatLng(point.latitude, point.longitude));
+  // }
+  //     // result.points.forEach((PointLatLng point) {
+  //     //   polylineCoordinates.add(LatLng(point.latitude, point.longitude));
+  //     // });
+  //   } else {
+  //     log(result.errorMessage.toString(), name: "Polylines error");
+  //   }
+  //   generatePolyLineFromPoints(polylineCoordinates);
+  //   return polylineCoordinates;
+  // }
 
-    polylines[id] = polyline;
-  }
+  // void generatePolyLineFromPoints(List<LatLng> polylineCoordinates) async {
+  //   PolylineId id = const PolylineId("poly");
+  //   Polyline polyline = Polyline(
+  //       polylineId: id,
+  //       color: AppColors.buttonColor,
+  //       points: polylineCoordinates,
+  //       width: 8);
+
+  //   polylines[id] = polyline;
+  // }
 }
