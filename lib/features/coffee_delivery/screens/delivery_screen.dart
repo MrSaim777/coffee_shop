@@ -21,7 +21,7 @@ class _DeliveryScreenState extends State<DeliveryScreen> {
   @override
   void initState() {
     deliveryController.addSourceDestinationIcon();
-    deliveryController.getCurrentLocation();
+    // deliveryController.getCurrentLocation();
     super.initState();
   }
 

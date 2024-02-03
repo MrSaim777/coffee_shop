@@ -12,8 +12,8 @@ class DeliveryController extends GetxController {
   final Completer<GoogleMapController> mapController =
       Completer<GoogleMapController>();
 
-  double latitude = -33.86;
-  RxDouble longitude = 151.20.obs;
+  double latitude = 32.943712491366576;
+  RxDouble longitude = 73.7107478454709.obs;
   RxBool myLocationButtonEnabled = false.obs;
   RxBool fetchingLocation = false.obs;
   BitmapDescriptor markerSourceIcon = BitmapDescriptor.defaultMarker;
@@ -23,27 +23,16 @@ class DeliveryController extends GetxController {
   List<LatLng> polylineCoordinates = [];
 
   var sourceLatLng = const LatLng(32.942850664716296, 73.70796740055084);
-  var destinationLatLng = const LatLng(32.952850664716296, 73.71796740055084);
+  var destinationLatLng = const LatLng(32.943850664716296, 73.70896740055084);
 
-  // @override
-  // void onInit() async {
-  //   super.onInit();
-  // addSourceDestinationIcon();
-  // getCurrentLocation().then(
-  //   (_) => {
-  //     getPolylinePoints().then((coordinates) => {
-  //           generatePolyLineFromPoints(coordinates),
-  //         }),
-  //   },
-  // );
-  // }
-
-  addSourceDestinationIcon() {
+  addSourceDestinationIcon() async {
     BitmapDescriptor.fromAssetImage(ImageConfiguration.empty, AssetIcons.source)
         .then((icon) => markerSourceIcon = icon);
 
     BitmapDescriptor.fromAssetImage(const ImageConfiguration(), AssetIcons.pin)
         .then((icon) => markerDestinationIcon = icon);
+    await Future.delayed(const Duration(milliseconds: 200))
+        .then((value) => longitude.refresh());
   }
 
   onTapMap(LatLng latlng) async {
@@ -121,8 +110,8 @@ class DeliveryController extends GetxController {
   //   PolylinePoints polylinePoints = PolylinePoints();
   //   PolylineResult result = await polylinePoints.getRouteBetweenCoordinates(
   //     mapKey, //Use your own api key
-      // PointLatLng(sourceLatLng.latitude, sourceLatLng.longitude),
-      // PointLatLng(latitude, longitude.value),
+  // PointLatLng(sourceLatLng.latitude, sourceLatLng.longitude),
+  // PointLatLng(latitude, longitude.value),
   //   );
   //   if (result.points.isNotEmpty) {
   // for (var point in result.points) {
