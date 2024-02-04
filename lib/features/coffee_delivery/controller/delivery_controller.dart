@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:developer';
+import 'package:coffee_shop/common/constants/colors.dart';
 import 'package:coffee_shop/common/constants/icons.dart';
 import 'package:coffee_shop/features/coffee_delivery/controller/map_key.dart';
 import 'package:flutter/material.dart';
@@ -46,6 +47,11 @@ class DeliveryController extends GetxController {
     mapController.complete(controller);
   }
 
+  var locationSnackbar = Get.showSnackbar(const GetSnackBar(
+      message: "Turn on your location",
+      backgroundColor: AppColors.buttonColor,
+      duration: Duration(seconds: 2)));
+
   Future<Position> getCurrentLocation() async {
     bool serviceEnabled;
     LocationPermission permission;
@@ -53,6 +59,7 @@ class DeliveryController extends GetxController {
 
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
+      locationSnackbar;
       return Future.error('Location services are disabled.');
     }
 
@@ -60,11 +67,13 @@ class DeliveryController extends GetxController {
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
+        locationSnackbar;
         return Future.error('Location permissions are denied');
       }
     }
 
     if (permission == LocationPermission.deniedForever) {
+      locationSnackbar;
       return Future.error(
           'Location permissions are permanently denied, we cannot request permissions.');
     }

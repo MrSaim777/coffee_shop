@@ -87,12 +87,15 @@ class CoffeeDetailScreen extends StatelessWidget {
     );
   }
 
-  Image buildImage(BuildContext context) {
-    return Image.asset(
-      coffee.image,
-      height: context.height / 3,
-      width: double.infinity,
-      fit: BoxFit.fill,
+  Hero buildImage(BuildContext context) {
+    return Hero(
+      tag: coffee.id,
+      child: Image.asset(
+        coffee.image,
+        height: context.height / 3,
+        width: double.infinity,
+        fit: BoxFit.fill,
+      ),
     );
   }
 }

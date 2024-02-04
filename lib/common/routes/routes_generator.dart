@@ -21,6 +21,7 @@ class RouteGenerator {
       case AppRoutes.detail:
         final Coffee coffee = settings.arguments as Coffee;
         return CupertinoPageRoute(
+          fullscreenDialog: true,
           builder: (context) => CoffeeDetailScreen(coffee: coffee),
         );
       case AppRoutes.order:
