@@ -97,18 +97,47 @@ FadeInUpBig buildGridView(BuildContext context, HomeController controller) {
                                 textColor: AppColors.coffeePriceColor),
                           ),
                           InkWell(
-                            child: Container(
-                              height: context.height / 25,
-                              width: context.width / 10,
-                              decoration: BoxDecoration(
-                                  color: AppColors.buttonColor,
-                                  borderRadius: BorderRadius.circular(10)),
-                              child: Center(
-                                  child: Icon(Icons.add,
-                                      color: AppColors.whiteColor,
-                                      size: context.width / 20)),
-                            ),
-                          )
+                              onTap: list.isInCart
+                                  ? null
+                                  : () {
+                                      list.isInCart = true;
+                                      controller.refreshCartBtn.refresh();
+                                    },
+                              child: Obx(() => controller.refreshCartBtn.value
+                                  ? Container(
+                                      height: context.height / 25,
+                                      width: context.width / 10,
+                                      decoration: BoxDecoration(
+                                          color: list.isInCart
+                                              ? AppColors.blackColor
+                                              : AppColors.buttonColor,
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      child: Center(
+                                          child: Icon(
+                                              list.isInCart
+                                                  ? Icons.done
+                                                  : Icons.add,
+                                              color: AppColors.whiteColor,
+                                              size: context.width / 20)),
+                                    )
+                                  : Container(
+                                      height: context.height / 25,
+                                      width: context.width / 10,
+                                      decoration: BoxDecoration(
+                                          color: list.isInCart
+                                              ? AppColors.blackColor
+                                              : AppColors.buttonColor,
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      child: Center(
+                                          child: Icon(
+                                              list.isInCart
+                                                  ? Icons.done
+                                                  : Icons.add,
+                                              color: AppColors.whiteColor,
+                                              size: context.width / 20)),
+                                    )))
                         ],
                       )
                     ],

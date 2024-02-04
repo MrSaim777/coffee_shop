@@ -22,7 +22,7 @@ class CoffeeDetailScreen extends StatelessWidget {
     final detailController = Get.put(DetailController());
     return Scaffold(
       backgroundColor: AppColors.whiteColor,
-      appBar: buildAppBar(context),
+      appBar: buildAppBar(context, detailController, coffee),
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: context.width / 20),
         child: SingleChildScrollView(
