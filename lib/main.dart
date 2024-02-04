@@ -18,7 +18,6 @@ class MyApp extends StatelessWidget {
       title: 'Coffee Shop',
       initialRoute: AppRoutes.defaultRoute,
       onGenerateRoute: RouteGenerator.onGenerateRoute,
-      navigatorObservers: [HeroController()],
       theme: ThemeData(
         appBarTheme:
             const AppBarTheme(backgroundColor: AppColors.scaffoldColor),

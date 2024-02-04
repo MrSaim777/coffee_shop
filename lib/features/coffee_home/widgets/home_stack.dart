@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:coffee_shop/common/constants/colors.dart';
 import 'package:coffee_shop/common/constants/icons.dart';
 import 'package:coffee_shop/common/constants/images.dart';
@@ -56,12 +57,37 @@ Stack buildHomeStack(BuildContext context) {
                       )
                     ],
                   ),
-                  Container(
-                    height: context.height / 20,
-                    width: context.width / 8,
-                    decoration: const BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage(AssetImages.image))),
+                  GestureDetector(
+                    onTap: () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return ElasticInDown(
+                            child: Dialog(
+                                backgroundColor: Colors.transparent,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(15.0),
+                                ),
+                                child: Container(
+                                  height: context.height / 3,
+                                  width: double.infinity,
+                                  decoration: const BoxDecoration(
+                                      image: DecorationImage(
+                                          fit: BoxFit.fill,
+                                          image:
+                                              AssetImage(AssetImages.image))),
+                                )),
+                          );
+                        },
+                      );
+                    },
+                    child: Container(
+                      height: context.height / 20,
+                      width: context.width / 8,
+                      decoration: const BoxDecoration(
+                          image: DecorationImage(
+                              image: AssetImage(AssetImages.image))),
+                    ),
                   )
                 ],
               ),
@@ -112,13 +138,15 @@ Stack buildHomeStack(BuildContext context) {
       ),
       Positioned(
         bottom: -context.height / 12,
-        child: Container(
-          height: context.height / 6,
-          width: context.width / 1.14,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              image: const DecorationImage(
-                  fit: BoxFit.cover, image: AssetImage(AssetImages.buyOne))),
+        child: FadeInLeftBig(
+          child: Container(
+            height: context.height / 6,
+            width: context.width / 1.14,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20),
+                image: const DecorationImage(
+                    fit: BoxFit.cover, image: AssetImage(AssetImages.buyOne))),
+          ),
         ),
       ),
     ],

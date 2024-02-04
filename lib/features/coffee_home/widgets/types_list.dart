@@ -1,12 +1,14 @@
-  import 'package:coffee_shop/common/constants/colors.dart';
+import 'package:animate_do/animate_do.dart';
+import 'package:coffee_shop/common/constants/colors.dart';
 import 'package:coffee_shop/common/utils/app_text_style.dart';
 import 'package:coffee_shop/features/coffee_home/controller/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-SizedBox buildCoffeeTypeList(
-      BuildContext context, HomeController controller) {
-    return SizedBox(
+FadeInRightBig buildCoffeeTypeList(
+    BuildContext context, HomeController controller) {
+  return FadeInRightBig(
+    child: SizedBox(
       height: context.height / 10,
       width: double.infinity,
       child: ListView.builder(
@@ -47,5 +49,6 @@ SizedBox buildCoffeeTypeList(
           );
         },
       ),
-    );
-  }
+    ),
+  );
+}
