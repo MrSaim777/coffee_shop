@@ -53,8 +53,7 @@ class CustomSearchDelegate extends SearchDelegate<String> {
         return InkWell(
           onTap: () =>
               Navigator.pushNamed(context, AppRoutes.detail, arguments: coffee),
-          child: buildSearchItem(context, results[index].image,
-              results[index].name, results[index].flavor),
+          child: buildSearchItem(context, results[index]),
         );
       },
     );
@@ -78,8 +77,7 @@ class CustomSearchDelegate extends SearchDelegate<String> {
         return InkWell(
           onTap: () =>
               Navigator.pushNamed(context, AppRoutes.detail, arguments: coffee),
-          child: buildSearchItem(context, results[index].image,
-              results[index].name, results[index].flavor),
+          child: buildSearchItem(context, results[index]),
         );
       },
     );
